@@ -14,6 +14,8 @@ const style = {
 const WriteListItem = ({count, title, maxLength, description}: Props) => {
     const [memo, setMemo] = useState('');
     const [contents, setContents] = useState('');
+    const [memoVisible, setMemoVisible] = useState(true);
+    const [contentsVisible, setContentsVisible] = useState(true);
 
     useEffect(() => {
         setMemo(loadMemoFromLocalStorage());
@@ -45,15 +47,30 @@ const WriteListItem = ({count, title, maxLength, description}: Props) => {
         setContents(value);
     }
 
+    const updateMemoVisible = () => {
+        setMemoVisible(!memoVisible);
+    }
+
+    const updateContentsVisible = () => {
+        setContentsVisible(!contentsVisible);
+    }
+
     return (
         <div>
             <h2>{count+1}. {title} ({contents.length}/{maxLength})</h2>
             <p>{description}</p>
             <h3>메모</h3>
-            <textarea value={memo} onChange={updateMemo} maxLength={5000} style={style} rows={10} />
+            <button onClick={updateMemoVisible}>{memoVisible ? 'OFF' : 'ON'}</button>
+            {
+                memoVisible &&
+                <textarea value={memo} onChange={updateMemo} maxLength={maxLength*10} style={style} rows={10} />
+            }
             <h3>내용</h3>
-            <textarea value={contents} onChange={updateContents} maxLength={maxLength} style={style} rows={20}/>
-
+            <button onClick={updateContentsVisible}>{contentsVisible ? 'OFF' : 'ON'}</button>
+            {
+                contentsVisible &&
+                <textarea value={contents} onChange={updateContents} maxLength={maxLength*10} style={style} rows={20}/>
+            }
         </div>
     );
 };
