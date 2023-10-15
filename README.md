@@ -10,7 +10,8 @@ npm run dev
 ```
 
 ## 실행 화면 
-https://github.com/snaag/resume-helper/assets/42943992/59250079-8327-450f-b2b4-28ada25adc43
+https://github.com/snaag/resume-helper/assets/42943992/7ae0c681-da1a-43f0-91e4-72259d0fb349
+
 
 
 
